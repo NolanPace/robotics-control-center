@@ -103,7 +103,7 @@ class _ControlScreenState extends State<ControlScreen> {
         const SizedBox(height: 10),
         Row(children: [stat('X POSITION','${pose.x.toStringAsFixed(2)} m'),stat('Y POSITION','${pose.y.toStringAsFixed(2)} m'),stat('HEADING','${(pose.heading*180/math.pi).toStringAsFixed(1)}°')]),
         Expanded(child: Row(children: [
-          Expanded(flex: 3, child: Card(color: const Color(0xFF13263B),child: Padding(padding: const EdgeInsets.all(14), child: LayoutBuilder(builder:(context, constraints)=>CustomPaint(size: Size(constraints.maxWidth,constraints.maxHeight),painter: RobotPainter(pose,trail))))),
+          Expanded(flex: 3, child: Card(color: const Color(0xFF13263B),child: Padding(padding: const EdgeInsets.all(14), child: LayoutBuilder(builder:(context, constraints)=>CustomPaint(size: Size(constraints.maxWidth,constraints.maxHeight),painter: RobotPainter(pose,trail)))))),
           const SizedBox(width: 14),
           Expanded(flex: 2,child: Column(children: [
             Card(color: const Color(0xFF13263B),child: Padding(padding: const EdgeInsets.all(18),child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
@@ -128,7 +128,7 @@ class RobotPainter extends CustomPainter {
     for(double y=0;y<size.height;y+=35){canvas.drawLine(Offset(0,y),Offset(size.width,y),grid);}
     Offset xy(Pose p)=>center+Offset(p.x*35,-p.y*35);
     final path=Path();
-    for(int i=0;i<trail.length;i++){final pt=xy(trail[i]);if(i==0)path.moveTo(pt.dx,pt.dy);else path.lineTo(pt.dx,pt.dy);}
+    for(int i=0;i<trail.length;i++){final pt=xy(trail[i]);if(i==0){path.moveTo(pt.dx,pt.dy);}else{path.lineTo(pt.dx,pt.dy);}}
     canvas.drawPath(path,Paint()..color=const Color(0xFF66DBB2)..strokeWidth=2..style=PaintingStyle.stroke);
     final here=xy(pose);canvas.drawCircle(here,14,Paint()..color=const Color(0xFF65B8F3));
     final tip=here+Offset(math.cos(pose.heading)*23,-math.sin(pose.heading)*23);
