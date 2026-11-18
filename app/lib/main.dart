@@ -106,7 +106,7 @@ class _ControlScreenState extends State<ControlScreen> {
           Expanded(flex: 3, child: Card(color: const Color(0xFF13263B),child: Padding(padding: const EdgeInsets.all(14), child: LayoutBuilder(builder:(context, constraints)=>CustomPaint(size: Size(constraints.maxWidth,constraints.maxHeight),painter: RobotPainter(pose,trail)))))),
           const SizedBox(width: 14),
           Expanded(flex: 2,child: Column(children: [
-            Card(color: const Color(0xFF13263B),child: Padding(padding: const EdgeInsets.all(18),child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
+            Card(color: const Color(0xFF13263B),child: Padding(padding: const EdgeInsets.all(10),child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
               Text('Linear speed: ${linear.toStringAsFixed(2)} m/s'),Slider(value: linear,min: -2,max: 2,onChanged:(v)=>setState(()=>linear=v)),
               Text('Angular speed: ${angular.toStringAsFixed(2)} rad/s'),Slider(value: angular,min: -3,max: 3,onChanged:(v)=>setState(()=>angular=v)),
               Wrap(spacing: 8,children: [FilledButton(onPressed: toggle,child: Text(running?'Pause':'Start')),OutlinedButton(onPressed: step,child: const Text('Step')),OutlinedButton(onPressed: reset,child: const Text('Reset')),OutlinedButton(onPressed:native?null:connect,child: const Text('Connect native'))]),
